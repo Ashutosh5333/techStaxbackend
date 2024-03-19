@@ -8,7 +8,7 @@ const workflowSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  nodes: [{
+  savedNodes: [{
     id: String,
     type: {
       type: String,
@@ -61,7 +61,7 @@ const workflowSchema = new mongoose.Schema({
       default: 150 
     }
   }],
-  edges: [{
+  savedEdges: [{
     id: String,
     source: {
       type: String,
