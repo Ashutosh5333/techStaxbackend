@@ -27,31 +27,73 @@ const workflowSchema = new mongoose.Schema({
     data: {
       label: {
         type: String,
-        default: 'New Node' // Default node label
+        default: 'New Node' 
       },
       parentId: {
         type: String,
-        default: '0' // Default parent ID
+        default: '0' 
       }
+    },
+    positionAbsolute:{ 
+      x: {
+        type: Number,
+        default: 0 
+      },
+      y: {
+        type: Number,
+        default: 0 
+      }
+    },
+    selected:{
+      type:Boolean,
+      default:false
+    },
+    dragging:{
+      type:Boolean,
+      default:false
+    },
+    height:{
+      type:Number,
+      default:40
     },
     width: {
       type: Number,
-      default: 150 // Default node width
+      default: 150 
     }
   }],
   edges: [{
     id: String,
     source: {
       type: String,
-      default: '0' // Default source node ID
+      default: '0' 
     },
     target: {
       type: String,
-      default: '0' // Default target node ID
+      default: '35' 
     },
     label: {
       type: String,
-      default: '' // Default edge label
+      default: ''
+    },
+    labelBgBorderRadius: {
+      type: Number,
+      default: 4
+    },
+    labelBgPadding: {
+      type: [Number],
+      default: [8, 4]
+    },
+    labelBgStyle: {
+      type: {
+        color: String,
+        fill: String,
+        fillOpacity: Number
+      },
+      default: {
+        color: "#fff",
+        fill: "#FFCC00",
+        fillOpacity: 0.7
+      }
     }
   }]
 });
