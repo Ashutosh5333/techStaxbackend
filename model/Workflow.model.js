@@ -95,7 +95,11 @@ const workflowSchema = new mongoose.Schema({
         fillOpacity: 0.7
       }
     }
-  }]
+  }],
+  userId: {
+    type: String,
+    required:true
+  },
 });
 
 

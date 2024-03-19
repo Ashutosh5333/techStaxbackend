@@ -19,8 +19,10 @@ app.get("/", (req, res) => {
 });
 
 const work = require('./routes/workflow.route')
+const user = require('./routes/user.route')
 
 app.use("/work",work)
+app.use("/user",user)
 
 
 
