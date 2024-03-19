@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+
 const app = express();
 
 app.use(
@@ -17,8 +18,10 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
+const work = require('./routes/workflow.route')
 
- /** All routes  */
+app.use("/work",work)
+
 
 
 
