@@ -45,8 +45,9 @@ const createPosts = async (req, res) => {
 };
 
 // 
+
 const getPosts = async (req, res) => {
-  console.log("userid********", req.userId);
+  // console.log("userid********", req.userId);
   try {
     const productData = await Workflow.find({ userId: req.userId });
     res.send(productData);
@@ -56,4 +57,26 @@ const getPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, getPosts ,getPost,createPosts};
+const deletepost = async (req, res) => {
+  const prodId = req.params.id;
+  const userId = req.userId;
+
+
+  try {
+    const productData = await Workflow.findOne({ _id: prodId });
+    console.log("product*****",productData.userId)
+    if (userId !== productData.userId) {
+      return res.status(401).send("You are not authorized");
+    } else {
+      await Workflow.findOneAndDelete({ _id: prodId });
+      res.send({ msg: "Post deleted successfully" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ msg: "Something went wrong" });
+  }
+};
+
+
+
+module.exports = { createPost, getPosts ,getPost,createPosts,deletepost};
