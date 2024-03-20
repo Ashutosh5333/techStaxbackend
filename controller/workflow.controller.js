@@ -1,6 +1,6 @@
 const { Workflow } = require("../model/Workflow.model");
 
-const createPost = async (req, res) => {
+const createPosts = async (req, res) => {
   try {
     const { ...postData } = req.body;
       // console.log("user",req.userId)
@@ -16,6 +16,23 @@ const createPost = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
+
+    // 
+    const createPost = async (req, res) => {
+      try {
+        const { ...postData } = req.body;
+      
+      const workPost = await Workflow.create(req.body);
+          console.log("wokflow **********data ", workPost);
+        res
+          .status(201)
+          .json({ message: "workflow post created successfully", workPost });
+        // res.send("okkkk")
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Something went wrong" });
+      }
+    };
 
   const getPost = async (req, res) => {
     try {
@@ -39,4 +56,4 @@ const getPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, getPosts ,getPost};
+module.exports = { createPost, getPosts ,getPost,createPosts};
